@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COSEDOM – Seguridad Profesional</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .highlight-underline {
+  border-bottom: 2px solid #ff2a2a;
+  font-weight: 500;
+}
+
+.logo-img {
+  width: 26px;
+  filter: drop-shadow(0 0 4px rgba(200,16,46,0.5));
+}
+
+  :root {
+    --negro: #0a0a0a;
+    --negro2: #111111;
+    --gris: #1a1a1a;
+    --gris2: #2a2a2a;
+    --gris-texto: #9a9a9a;
+    --blanco: #f0ede8;
+    --rojo: #c8102e;
+    --rojo-hover: #e01234;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--negro);
+    color: var(--blanco);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(200,16,46,0.2);
+  }
+
+  .footer-logo {
+  display: flex;
+  align-items: center; /* alinea vertical */
+  gap: 10px; /* espacio entre logo y texto */
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  color: var(--blanco);
+  text-decoration: none;
+  }
+
+  .logo span { color: var(--rojo); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gris-texto);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--rojo); }
+
+  .nav-cta {
+    background: var(--rojo);
+    color: var(--blanco) !important;
+    padding: 0.5rem 1.4rem;
+    border-radius: 2px;
+  }
+
+  .nav-cta:hover { background: var(--rojo-hover); color: var(--blanco) !important; }
+
+  /* ── HERO ── */
+  #inicio {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(200,16,46,0.04) 0%, transparent 60%),
+      repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(255,255,255,0.012) 80px, rgba(255,255,255,0.012) 81px),
+      repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(255,255,255,0.012) 80px, rgba(255,255,255,0.012) 81px);
+  }
+
+  .hero-accent {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, transparent, var(--rojo), transparent);
+  }
+
+  .hero-content {
+    position: relative;
+    max-width: 720px;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rojo);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    border-left: 2px solid var(--rojo);
+    padding-left: 1rem;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    color: var(--blanco);
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--rojo);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--gris-texto);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--rojo);
+    color: var(--blanco);
+    padding: 0.9rem 2.2rem;
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--rojo-hover); transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-block;
+    border: 1px solid rgba(200,16,46,0.5);
+    color: var(--blanco);
+    padding: 0.9rem 2.2rem;
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 2px;
+    margin-left: 1rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--rojo); background: rgba(200,16,46,0.08); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--blanco);
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .stat-num span { color: var(--rojo); }
+
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-top: 0.3rem;
+  }
+
+  /* ── SECCIONES GENERALES ── */
+  section { padding: 6rem 5%; }
+
+  .section-tag {
+    font-size: 0.72rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rojo);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    border-left: 2px solid var(--rojo);
+    padding-left: 1rem;
+    display: inline-block;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    letter-spacing: 2px;
+    color: var(--blanco);
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    color: var(--gris-texto);
+    max-width: 520px;
+    line-height: 1.8;
+    font-size: 1rem;
+  }
+
+  /* ── NOSOTROS ── */
+  #nosotros { background: var(--negro2); }
+
+  .nosotros-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 3.5rem;
+  }
+
+  .nosotros-text p {
+    color: var(--gris-texto);
+    margin-bottom: 1.2rem;
+    line-height: 1.85;
+  }
+
+  .valores-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  .valor-card {
+    background: var(--gris);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-top: 2px solid var(--rojo);
+    padding: 1.4rem;
+    border-radius: 2px;
+  }
+
+  .valor-card h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: var(--blanco);
+    margin-bottom: 0.4rem;
+  }
+
+  .valor-card p {
+    font-size: 0.85rem;
+    color: var(--gris-texto);
+    line-height: 1.6;
+  }
+
+  /* ── SERVICIOS ── */
+  #servicios { background: var(--negro); }
+
+  .servicios-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+  }
+
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(200,16,46,0.15);
+    border: 1.5px solid rgba(200,16,46,0.15);
+  }
+
+  .servicio-card {
+    background: var(--negro2);
+    padding: 2.5rem;
+    transition: background 0.25s;
+    cursor: default;
+  }
+
+  .servicio-card:hover { background: var(--gris); }
+
+  .serv-icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 1.5rem;
+    color: var(--rojo);
+  }
+
+  .serv-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  .servicio-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    color: var(--blanco);
+    margin-bottom: 0.7rem;
+  }
+
+  .servicio-card p {
+    font-size: 0.9rem;
+    color: var(--gris-texto);
+    line-height: 1.7;
+  }
+
+  .serv-line {
+    width: 30px;
+    height: 2px;
+    background: var(--rojo);
+    margin-top: 1.5rem;
+    transition: width 0.25s;
+  }
+
+  .servicio-card:hover .serv-line { width: 60px; }
+
+  /* ── CONTACTO ── */
+  #contacto { background: var(--negro2); }
+
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    margin-top: 3.5rem;
+    align-items: start;
+  }
+
+  .contacto-info h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: var(--blanco);
+    margin-bottom: 1rem;
+  }
+
+  .contacto-info p {
+    color: var(--gris-texto);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .contacto-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: var(--gris-texto);
+    font-size: 0.9rem;
+  }
+
+  .contacto-item-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--rojo);
+    flex-shrink: 0;
+  }
+
+  .contacto-item-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .form-group { margin-bottom: 1.2rem; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    background: var(--gris);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2px;
+    color: var(--blanco);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    padding: 0.85rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: rgba(200,16,46,0.5);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 110px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060606;
+    border-top: 1px solid rgba(200,16,46,0.2);
+    padding: 2.5rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    color: var(--blanco);
+    opacity: 0.6;
+    text-decoration: none;
+  }
+
+  .footer-logo span { color: var(--rojo); opacity: 1; }
+
+  footer p {
+    font-size: 0.78rem;
+    color: rgba(154,154,154,0.5);
+    letter-spacing: 1px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.78rem;
+    color: rgba(154,154,154,0.5);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--rojo); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nosotros-grid, .contacto-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .servicios-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 2rem; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .footer-links { justify-content: center; }
+    .servicios-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#inicio" class="footer-logo">
+  <img src="logocosedom.png" alt="COSEDOM" class="logo-img">
+  COSEDOM
+</a>
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Seguridad &amp; Vigilancia Profesional</div>
+    <h1 class="hero-title">
+      Protección<br>
+      sin<br>
+      <em>Compromisos.</em>
+    </h1>
+    <p class="hero-sub">Soluciones integrales de seguridad con cobertura 24/7 y un enfoque en protección, eficiencia y confianza.</p>
+    <a href="#contacto" class="btn-primary">Solicitar Cotización</a>
+    <a href="#servicios" class="btn-outline">Ver Servicios</a>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">25<span>+</span></div>
+        <div class="stat-label">Años de experiencia</div>
+      </div>
+      <div>
+        <div class="stat-num">150<span>+</span></div>
+        <div class="stat-label">Clientes protegidos</div>
+      </div>
+      <div>
+        <div class="stat-num">24<span>/7</span></div>
+        <div class="stat-label">siempre activos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div class="section-tag">Quiénes somos</div>
+  <div class="nosotros-grid">
+    <div class="nosotros-text">
+      <h2 class="section-title">Más de dos<br>décadas<br>de confianza</h2>
+      <p>Somos una empresa dominicana de seguridad privada con más de 25 años protegiendo los activos, instalaciones y personas más importantes de nuestros clientes.</p>
+      <p>Nuestro equipo está Comprometido con brindar seguridad confiable, basada en presencia constante y atención a cada detalle.</p>
+      <a href="#contacto" class="btn-primary" style="margin-top:1rem;">Habla con nosotros</a>
+    </div>
+    <div class="valores-grid">
+      <div class="valor-card">
+        <h4>Confiabilidad</h4>
+        <p>Cumplimos cada compromiso con responsabilidad y constancia en el servicio.</p>
+      </div>
+      <div class="valor-card">
+        <h4>Experiencia</h4>
+        <p>Trayectoria en el sector que respalda nuestro trabajo diario.</p>
+      </div>
+      <div class="valor-card">
+        <h4>Supervisión</h4>
+        <p>Seguimiento constante para garantizar el correcto funcionamiento del servicio.</p>
+      </div>
+      <div class="valor-card">
+        <h4>Zona de Cobertura</h4>
+        <p>Presencia en Santo Domingo, Las Terrenas y ahora Bávaro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="servicios-header">
+    <div>
+      <div class="section-tag">Lo que ofrecemos</div>
+      <h2 class="section-title">Nuestros Servicios</h2>
+    </div>
+    <p class="section-desc" style="max-width:320px; font-size:0.9rem;">
+      Soluciones adaptadas a cada necesidad.
+    </p>
+  </div>
+
+  <div class="servicios-grid">
+
+    <!-- Vigilancia Física -->
+    <div class="servicio-card">
+      <div class="serv-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <h3>Vigilancia Física</h3>
+      <p>Servicio de vigilancia presencial enfocado en la protección y control de accesos en todo momento.</p>
+      <div class="serv-line"></div>
+    </div>
+
+    <!-- Seguridad Residencial -->
+    <div class="servicio-card">
+      <div class="serv-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <h3>Seguridad Residencial</h3>
+      <p>Protección para residencias y comunidades con presencia constante y control de entorno.</p>
+      <div class="serv-line"></div>
+    </div>
+
+    <!-- Escolta -->
+    <div class="servicio-card">
+      <div class="serv-icon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="10" r="3"/>
+          <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/>
+        </svg>
+      </div>
+      <h3>Escolta</h3>
+      <p>Acompañamiento y protección en traslados, enfocados en seguridad y discreción durante el servicio.</p>
+      <div class="serv-line"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-tag">Estemos en contacto</div>
+  <h2 class="section-title">Solicite una Cotización</h2>
+  <div class="contacto-grid">
+    <div class="contacto-info">
+      <h3>¿Listo para proteger<br>lo que más importa?</h3>
+<p>
+  Nuestro equipo está disponible para evaluar sus necesidades y diseñar un plan de seguridad personalizado 
+  <span class="highlight-underline">sin costo</span>.
+</p>      <div class="contacto-item">
+        <div class="contacto-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.45a2 2 0 0 1 1.98-2.18H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.63a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/></svg>
+        </div>
+        (809) 548-8427 / (809) 000-0001
+      </div>
+      <div class="contacto-item">
+        <div class="contacto-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        Cseguridaddominicana@gmail.com
+      </div>
+      <div class="contacto-item">
+        <div class="contacto-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        República Dominicana
+      </div>
+    </div>
+
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Juan Pérez" required>
+        </div>
+        <div class="form-group">
+          <label>Empresa</label>
+          <input type="text" placeholder="Nombre de su empresa">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" placeholder="(809) 000-0000" required>
+        </div>
+        <div class="form-group">
+          <label>Correo</label>
+          <input type="email" placeholder="correo@empresa.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Servicio de interés</label>
+        <select>
+          <option value="">Seleccione un servicio...</option>
+          <option>Vigilancia Física</option>
+          <option>Escoltas </option>
+          <option>Seguridad Residencial</option>
+
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensaje</label>
+        <textarea placeholder="Cuéntenos sobre sus necesidades de seguridad..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%; text-align:center; border:none; cursor:pointer; font-size:0.82rem;">
+        Enviar Solicitud
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<a href="#inicio" class="footer-logo">COSEDOM</a>  <ul class="footer-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = '¡Mensaje enviado!';
+    btn.style.background = '#1a6b3a';
+    setTimeout(() => {
+      btn.textContent = 'Enviar Solicitud';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
